@@ -4,6 +4,8 @@ const compression = require('compression');
 
 const clientBuildPath = resolve(__dirname, '..', '..', 'client');
 const staticPath = resolve(__dirname, '..', '..', '..', 'static');
+console.log({clientBuildPath});
+console.log({staticPath});
 
 module.exports = function setup(app) {
   app.use(compression());

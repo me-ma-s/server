@@ -1,0 +1,32 @@
+{
+  "version": "1.0.0",
+  "author": {
+    "name": "Nikita Lebedev"
+  },
+  "description": "Memas server",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon --watch src src",
+    "start": "cross-env NODE_ENV=production node src",
+    "build": "mkdir ../build; cp -r * ../build",
+
+    "db-drop": "dropdb messenger",
+    "db-create": "createdb messenger",
+    "db-role": "psql -f db/create-role.sql messenger",
+    "db-tables": "psql -f db/create-tables.sql messenger",
+    "api-test": "node tests/api/channels.js && node tests/api/users.js && node tests/api/user_in_channel.js && node tests/api/messages.js",
+    "db": "npm run db-drop 2> /dev/null; npm run db-role 2> /dev/null; npm run db-create && npm run db-tables && npm run api-test"
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "body-parser": "1.18.3",
+    "compression": "1.7.3",
+    "cookie-parser": "^1.4.4",
+    "cross-env": "5.2.0",
+    "express": "4.16.4",
+    "node-forge": "^0.10.0",
+    "nodemon": "^1.19.1",
+    "pg": "^8.3.3",
+    "pg-promise": "^9.3.6",
+    "response-time": "^2.3.2"
+  }
+}
