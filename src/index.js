@@ -22,10 +22,6 @@ process.on('unhandledRejection', onUnhandledRejection);
 process.on('uncaughtException', onUnhandledException);
 
 app.set('env', process.env.NODE_ENV);
-// app.use((req, res, next) => {
-//   console.log(req.url);
-//   next();
-// });
 
 app.use(bodyParser.json());
 app.use(cookieParser());
