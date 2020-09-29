@@ -1,12 +1,13 @@
 const http = require('http');
-const express = require('express');
+const app = require('express')();
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const setupApiRoutes = require('./middlewares/api');
+const setupAppRoutes = require('./middlewares/setupAppRoutes');
 const logger = require('./services/logger');
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-process.env.HTTP_PORT = process.env.HTTP_PORT || 30303;
+process.env.HTTP_PORT = process.env.HTTP_PORT || 30001;
 
 function onUnhandledRejection(err) {
   console.log('APPLICATION ERROR:', err);
@@ -20,17 +21,16 @@ function onUnhandledException(err) {
 process.on('unhandledRejection', onUnhandledRejection);
 process.on('uncaughtException', onUnhandledException);
 
-const setupAppRoutes =
-  process.env.NODE_ENV === 'development' ? require('./middlewares/development') : require('./middlewares/production');
-
-const app = express();
-
 app.set('env', process.env.NODE_ENV);
+// app.use((req, res, next) => {
+//   console.log(req.url);
+//   next();
+// });
+
 app.use(bodyParser.json());
 app.use(cookieParser());
-
-
 app.use(logger);
+
 try {
   setupApiRoutes(app);
 } catch (e) {
