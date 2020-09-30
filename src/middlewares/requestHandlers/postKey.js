@@ -11,4 +11,4 @@ async function postKey(req, res) {
   }
 }
 
-module.exports = { postKey }
+module.exports = postKey;

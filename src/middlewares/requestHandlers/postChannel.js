@@ -11,4 +11,4 @@ async function postChannel(req, res) {
   }
 }
 
-module.exports = { postChannel }
+module.exports = postChannel;

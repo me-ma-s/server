@@ -17,4 +17,4 @@ async function getUsersOfChannel(req, res) {
   }
 }
 
-module.exports = { getUsersOfChannel };
+module.exports = getUsersOfChannel;

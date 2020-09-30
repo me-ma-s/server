@@ -16,4 +16,4 @@ async function getKey(req, res) {
   }
 }
 
-module.exports = { getKey };
+module.exports = getKey;

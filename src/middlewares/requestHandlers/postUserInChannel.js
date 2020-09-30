@@ -11,4 +11,4 @@ async function postUserInChannel(req, res) {
   }
 }
 
-module.exports = { postUserInChannel }
+module.exports = postUserInChannel;

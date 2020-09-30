@@ -11,4 +11,4 @@ async function postUser(req, res) {
   }
 }
 
-module.exports = { postUser }
+module.exports = postUser;

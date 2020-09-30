@@ -18,4 +18,4 @@ async function getChannel(req, res) {
   }
 }
 
-module.exports = { getChannel };
+module.exports = getChannel;
