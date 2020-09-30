@@ -17,4 +17,4 @@ async function getMessages(req, res) {
   }
 }
 
-module.exports = { getMessages };
+module.exports = getMessages;

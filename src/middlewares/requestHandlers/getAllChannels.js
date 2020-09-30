@@ -16,4 +16,4 @@ async function getAllChannels(req, res) {
   }
 }
 
-module.exports = { getAllChannels };
+module.exports = getAllChannels;

@@ -11,4 +11,4 @@ async function postMessage(req, res) {
   }
 }
 
-module.exports = { postMessage }
+module.exports = postMessage;
