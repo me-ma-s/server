@@ -6,7 +6,7 @@ async function logIn(req, res) {
     const { email, email_pass_hash } = req.body;
 
     const { rows } = await client.query(`
-      SELECT * FROM users WHERE email = ${email}
+      SELECT * FROM users WHERE email = '${email}'
     `);
 
     if (rows.length === 0) throw new Error(`Пользователь с 'email: '${email}' не найден`);
