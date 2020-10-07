@@ -3,7 +3,7 @@ const handleError = require('./handleError');
 
 async function logIn(req, res) {
   try {
-    const { email, email_pass_hash } = req.query;
+    const { email, email_pass_hash } = req.body;
 
     const { rows } = await client.query(`
       SELECT * FROM users WHERE email = ${email}

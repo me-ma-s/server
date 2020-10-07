@@ -31,8 +31,8 @@ module.exports = function setupApiRoutes(app) {
   app.get('/api/getUser', getUser);
 
   //authorization
+  app.post('/api/logIn', logIn);
   // TODO: после отладки сделать .post
-  app.get('/api/logIn', logIn);
   app.get('/api/logOut', logOut);
 
   //user_in_channel
