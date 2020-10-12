@@ -23,8 +23,8 @@ CREATE TABLE channels (
   name             TEXT    NOT NULL,
   avatar_url       TEXT    DEFAULT 'https://static.wikia.nocookie.net/dogelore/images/9/97/Doge.jpg/revision/latest/top-crop/width/360/height/450?cb=2019020511305',
   description      TEXT,
-  key_id           INT     REFERENCES keys(id), -- TODO: сделать отдельный ключ для каждого пользователя
-  creator_id       INT,
+  creator_id       INT     NOT NULL, --
+  -- key_id           INT     REFERENCES keys(id), -- TODO: сделать отдельный ключ для каждого пользователя
   reload_interval  INT     DEFAULT 30000
 );
 
@@ -42,9 +42,9 @@ CREATE TABLE users (
 CREATE TABLE user_in_channel (
   user_id         INT    NOT NULL    REFERENCES users(id)    ON DELETE CASCADE,
   channel_id      INT    NOT NULL    REFERENCES channels(id) ON DELETE CASCADE,
+  channel_key     JSON,
   preferences     JSON,
-  user_role       JSON,  -- каждое право пользователя определяется битом в инте
-  channel_key_id  INT    REFERENCES keys(id),
+  user_role       JSON,
   PRIMARY KEY (user_id, channel_id)
 );
 
