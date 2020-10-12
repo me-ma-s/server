@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const setupApiRoutes = require('./middlewares/api');
 const setupAppRoutes = require('./middlewares/setupAppRoutes');
 const logger = require('./services/logger');
+const authFilter = require('./services/authFilter');
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 process.env.HTTP_PORT = process.env.HTTP_PORT || 30001;
@@ -25,6 +26,7 @@ app.set('env', process.env.NODE_ENV);
 
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(authFilter);
 app.use(logger);
 
 try {

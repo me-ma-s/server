@@ -19,42 +19,43 @@ CREATE TABLE keys (
 );
 
 CREATE TABLE channels (
-  id              BIGSERIAL  PRIMARY KEY,
-  name            TEXT       NOT NULL,
-  avatar_url      TEXT       DEFAULT 'https://static.wikia.nocookie.net/dogelore/images/9/97/Doge.jpg/revision/latest/top-crop/width/360/height/450?cb=2019020511305',
-  description     TEXT,
-  key_id          BIGINT     REFERENCES keys(id), -- TODO: сделать отдельный ключ для каждого пользователя
-  reload_interval INT        DEFAULT 30000
+  id               SERIAL  PRIMARY KEY,
+  name             TEXT    NOT NULL,
+  avatar_url       TEXT    DEFAULT 'https://static.wikia.nocookie.net/dogelore/images/9/97/Doge.jpg/revision/latest/top-crop/width/360/height/450?cb=2019020511305',
+  description      TEXT,
+  key_id           INT     REFERENCES keys(id), -- TODO: сделать отдельный ключ для каждого пользователя
+  creator_id       INT,
+  reload_interval  INT     DEFAULT 30000
 );
 
 CREATE TABLE users (
-  id         	    BIGSERIAL PRIMARY KEY,
-  email           TEXT      NOT NULL UNIQUE,
-  name       	    TEXT      NOT NULL,
-  surname    	    TEXT      NOT NULL,
-  email_pass_hash TEXT, -- NOT NULL,
-  pubkey          TEXT, -- NOT NULL UNIQUE
-  _privkey        TEXT, -- NOT NULL
-  avatar_url  	  TEXT      DEFAULT 'https://i.ytimg.com/vi/tWE_2HySBhc/hqdefault.jpg'
+  id         	     SERIAL  PRIMARY KEY,
+  email            TEXT    NOT NULL UNIQUE,
+  name       	     TEXT    NOT NULL,
+  surname    	     TEXT    NOT NULL,
+  email_pass_hash  TEXT, -- NOT NULL,
+  pubkey           TEXT, -- NOT NULL UNIQUE
+  _privkey         TEXT, -- NOT NULL
+  avatar_url  	   TEXT    DEFAULT 'https://i.ytimg.com/vi/tWE_2HySBhc/hqdefault.jpg'
 );
 
 CREATE TABLE user_in_channel (
-  user_id         BIGINT  NOT NULL    REFERENCES users(id)    ON DELETE CASCADE,
-  channel_id      INT     NOT NULL    REFERENCES channels(id) ON DELETE CASCADE,
+  user_id         INT    NOT NULL    REFERENCES users(id)    ON DELETE CASCADE,
+  channel_id      INT    NOT NULL    REFERENCES channels(id) ON DELETE CASCADE,
   preferences     JSON,
   user_role       JSON,  -- каждое право пользователя определяется битом в инте
-  channel_key_id  INT REFERENCES keys(id),
+  channel_key_id  INT    REFERENCES keys(id),
   PRIMARY KEY (user_id, channel_id)
 );
 
 CREATE TABLE messages (
-  id              BIGSERIAL  PRIMARY KEY,
-  channel_id      INT        NOT NULL      REFERENCES channels(id),
-  user_id         BIGINT     NOT NULL      REFERENCES users(id),
-  answer_to_id    INT        DEFAULT NULL  REFERENCES messages(id),
-  date_time       TIMESTAMP  NOT NULL      DEFAULT current_timestamp,
-  _text           TEXT   NOT NULL,
-  iv              TEXT
+  id            SERIAL     PRIMARY KEY,
+  channel_id    INT        NOT NULL      REFERENCES channels(id),
+  user_id       BIGINT     NOT NULL      REFERENCES users(id),
+  answer_to_id  INT        DEFAULT NULL  REFERENCES messages(id),
+  date_time     TIMESTAMP  NOT NULL      DEFAULT current_timestamp,
+  _text         TEXT       NOT NULL,
+  iv            TEXT
 );
 
 -- CREATE TABLE attachments (
@@ -67,7 +68,7 @@ CREATE TABLE messages (
 -- );
 
 CREATE TABLE logs (
-  id          BIGSERIAL PRIMARY KEY,
+  id          SERIAL PRIMARY KEY,
   login       TEXT,
   created_at  TIMESTAMP,
   month       INT ,
