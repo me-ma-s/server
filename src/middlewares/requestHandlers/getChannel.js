@@ -1,3 +1,4 @@
+const text_SelectChannelsOfUser = require('../../helpers/text_SelectChannelsOfUser');
 const { client } = require('../../services/pg');
 const handleError = require('./handleError');
 
@@ -7,12 +8,9 @@ async function getChannel(req, res) {
     const channel_id = req.query.channel_id;
 
     const { rows } = await client.query(`
-      SELECT channels.*, uic.channel_key AS channel_key 
-      FROM channels INNER JOIN user_in_channel AS uic ON (channels.id = uic.channel_id)
-      WHERE uic.user_id = ${user_id}
-        AND uic.channel_id = ${channel_id}
+      SELECT * FROM (${text_SelectChannelsOfUser(user_id)})
+      WHERE channel_id = ${channel_id}
       ORDER BY id ASC
-  
     `);
     // const { rows } = await client.query(`
     //   SELECT channels.*, keys.key AS channel_key
