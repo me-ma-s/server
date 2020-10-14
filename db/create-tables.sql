@@ -42,9 +42,10 @@ CREATE TABLE users (
 CREATE TABLE user_in_channel (
   user_id         INT    NOT NULL    REFERENCES users(id)    ON DELETE CASCADE,
   channel_id      INT    NOT NULL    REFERENCES channels(id) ON DELETE CASCADE,
-  channel_key     JSON,
-  preferences     JSON,
-  user_role       JSON,
+  channel_key     TEXT,
+  -- channel_key     JSON,
+  preferences     TEXT,
+  user_role       TEXT,
   PRIMARY KEY (user_id, channel_id)
 );
 
