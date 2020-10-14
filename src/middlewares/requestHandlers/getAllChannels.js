@@ -5,7 +5,7 @@ const handleError = require('./handleError');
 
 async function getAllChannels(req, res) {
   try {
-    const user_id = req.cookies.user.id;
+    const user_id = req.cookies.user_id;
     
     const { rows } = await client.query(`
       ${text_SelectChannelsOfUser(user_id)}
