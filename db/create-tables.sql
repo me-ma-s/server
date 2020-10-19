@@ -59,6 +59,15 @@ CREATE TABLE messages (
   iv            TEXT
 );
 
+CREATE TABLE contacts (
+  id           SERIAL PRIMARY KEY,
+  user_id      INT,
+  friend_id    INT,
+  _contact_key TEXT,
+  _priv_key    TEXT,
+  step         INT
+);
+
 -- CREATE TABLE attachments (
 --     message_id       INT    NOT NULL    REFERENCES messages(id) ON DELETE CASCADE,
 --     attachment_order INT    NOT NULL,

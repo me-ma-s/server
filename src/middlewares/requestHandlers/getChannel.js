@@ -12,11 +12,6 @@ async function getChannel(req, res) {
       WHERE channel_id = ${channel_id}
       ORDER BY id ASC
     `);
-    // const { rows } = await client.query(`
-    //   SELECT channels.*, keys.key AS channel_key
-    //     FROM channels LEFT OUTER JOIN keys ON (channels.key_id = keys.id)
-    //     WHERE channels.id=${channel_id}
-    // `);
 
     res.send(rows[0]);
 
