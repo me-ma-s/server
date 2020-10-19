@@ -7,8 +7,8 @@ const setupAppRoutes = require('./middlewares/setupAppRoutes');
 const logger = require('./services/logger');
 const authFilter = require('./services/authFilter');
 
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-process.env.HTTP_PORT = process.env.HTTP_PORT || 30001;
+process.env.NODE_ENV = process.env.NODE_ENV ?? 'development';
+process.env.HTTP_PORT = process.env.HTTP_PORT ?? 30001;
 
 function onUnhandledRejection(err) {
   console.log('APPLICATION ERROR:', err);
