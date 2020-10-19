@@ -13,6 +13,11 @@ const getKey = require("./requestHandlers/getKey");
 const postKey = require("./requestHandlers/postKey");
 const logIn = require("./requestHandlers/logIn");
 const logOut = require("./requestHandlers/logOut");
+const firstStep = require("./requestHandlers/firstStep");
+const secondStep = require("./requestHandlers/secondStep");
+const thirdStep = require("./requestHandlers/thirdStep");
+const readyForThirdStep = require("./requestHandlers/readyForThirdStep");
+const getContacts = require("./requestHandlers/getContacts");
 
 module.exports = function setupApiRoutes(app) {
   //channels
@@ -37,11 +42,17 @@ module.exports = function setupApiRoutes(app) {
 
   //user_in_channel
   app.post('/api/postUserInChannel', postUserInChannel);
-  // app.post('/api/channels/:channelId/users/:userId', postUserInChannel);
   app.get('/api/getUsersOfChannel', getUsersOfChannel);
   app.get('/api/getChannelsOfUser', getChannelsOfUser);
 
   // keys
   app.get('/api/getKey', getKey);
   app.post('/api/postKey', postKey);
+  
+  // contacts
+  app.post('/api/firstStep', firstStep); 
+  app.post('/api/secondStep', secondStep);
+  app.post('/api/thirdStep', thirdStep);
+  app.get('/api/readyForThirdStep', readyForThirdStep);
+  app.get('/api/getContacts', getContacts);
 };
