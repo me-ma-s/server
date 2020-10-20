@@ -6,7 +6,9 @@ async function postChannel(req, res) {
     const channel = req.body;
     // 1. Выделить пользовательский ключ канала
     const _channel_key = channel._channel_key;
-    delete channel._channel_key
+    const iv = channel.iv;
+    delete channel._channel_key;
+    delete channel.iv;
     // 2. Создать канал, записать его создателя
     channel.creator_id = req.cookies.user_id;
     const { rows: [pgChannel] } = await pgInsert('channels', channel);
@@ -18,7 +20,8 @@ async function postChannel(req, res) {
     const { rows: [pgUIC] } = await pgInsert('user_in_channel', {
       user_id: req.cookies.user_id,
       channel_id: pgChannel.id,
-      _channel_key
+      _channel_key,
+      iv
     });
     // 5. Вернуть пользователю объект
     pgChannel._channel_key = _channel_key;
