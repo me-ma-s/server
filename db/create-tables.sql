@@ -34,8 +34,7 @@ CREATE TABLE users (
   name       	     TEXT    NOT NULL,
   surname    	     TEXT    NOT NULL,
   email_pass_hash  TEXT, -- NOT NULL,
-  pubkey           TEXT, -- NOT NULL UNIQUE
-  _privkey         TEXT, -- NOT NULL
+  _user_key           TEXT, -- NOT NULL UNIQUE
   avatar_url  	   TEXT    DEFAULT 'https://i.ytimg.com/vi/tWE_2HySBhc/hqdefault.jpg'
 );
 
