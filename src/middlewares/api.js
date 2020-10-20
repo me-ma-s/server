@@ -1,4 +1,4 @@
-const getChannelsOfUser = require("./requestHandlers/getChannelsOfUser");
+// const getChannelsOfUser = require("./requestHandlers/getChannelsOfUser");
 const getUsersOfChannel = require("./requestHandlers/getUsersOfChannel");
 const postUserInChannel = require("./requestHandlers/postUserInChannel");
 const getAllChannels = require("./requestHandlers/getAllChannels");
@@ -43,7 +43,7 @@ module.exports = function setupApiRoutes(app) {
   //user_in_channel
   app.post('/api/postUserInChannel', postUserInChannel);
   app.get('/api/getUsersOfChannel', getUsersOfChannel);
-  app.get('/api/getChannelsOfUser', getChannelsOfUser);
+  // app.get('/api/getChannelsOfUser', getChannelsOfUser);
 
   // keys
   app.get('/api/getKey', getKey);
