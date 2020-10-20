@@ -3,7 +3,9 @@ const handleError = require('./handleError');
 
 async function postMessage(req, res) {
   try {
-    const { rows } = await pgInsert('messages', req.body);
+    const user_id = req.cookies.user_id;
+    const msg = {...req.body, user_id}
+    const { rows } = await pgInsert('messages', msg);
     res.send(rows[0]);
 
   } catch (err) {
