@@ -65,6 +65,7 @@ CREATE TABLE contacts (
   friend_id    INT,
   _contact_key TEXT,
   _priv_key    TEXT,
+  iv           TEXT,
   step         INT
 );
 

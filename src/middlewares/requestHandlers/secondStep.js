@@ -31,6 +31,7 @@ async function secondStep(req, res) {
       user_id,
       friend_id: invitorContact.user_id,
       _contact_key: req.body._own_key,
+      iv: req.body.iv,
       step: 3
     };
 

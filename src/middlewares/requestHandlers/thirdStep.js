@@ -10,6 +10,7 @@ async function thirdStep(req, res) {
     UPDATE contacts SET 
       friend_id = ${user_id}, 
       _contact_key = ${req.body._contact_key},
+      iv = ${req.body.iv},
       step = 3
     WHERE id = ${req.body.id}
     RETURNING *
