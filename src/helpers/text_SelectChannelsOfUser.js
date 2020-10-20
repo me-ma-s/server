@@ -1,6 +1,6 @@
 function text_SelectChannelsOfUser(user_id) {
   return `
-    SELECT channels.*, uic.channel_key AS channel_key 
+    SELECT channels.*, uic._channel_key AS _channel_key 
     FROM channels INNER JOIN user_in_channel AS uic ON (channels.id = uic.channel_id)
     WHERE uic.user_id = ${user_id}
   `

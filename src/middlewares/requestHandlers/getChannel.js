@@ -8,8 +8,8 @@ async function getChannel(req, res) {
     const channel_id = req.query.channel_id;
 
     const { rows } = await client.query(`
-      SELECT * FROM (${text_SelectChannelsOfUser(user_id)})
-      WHERE channel_id = ${channel_id}
+      SELECT * FROM (${text_SelectChannelsOfUser(user_id)}) AS all_channels
+      WHERE id = ${channel_id}
       ORDER BY id ASC
     `);
 
